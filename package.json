@@ -1,0 +1,13 @@
+{
+  "name": "CS4241-FinalProject-node",
+  "version": "0.0.1",
+  "description": "Final project for cs4241",
+  "author": "Robert McKenna and Lucas Lebrao",
+  "private": true,
+  "scripts":{
+    "start": "node server.js"
+  },
+  "dependencies":{
+    "express": "~4.9.0"
+  }
+}
