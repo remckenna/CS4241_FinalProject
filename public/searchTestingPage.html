@@ -24,19 +24,34 @@
         <label for="recipeTextBox">Recipe For: <input id="recipeTextBox" type="text" name="recipe"></label>
         <label for="recipeSubmitButton"><input id="recipeSubmitButton" type="submit" onclick="onSearchFormSubmit()"></label>
       </form>
+      <div id="searchResultDiv" class="searchResults">
+      </div>
     </div>
     <div id="footer">
     </div>
     <script>
       function onSearchFormSubmit(){
+        var url = "/search?recipe="+document.getElementById("recipeTextBox").value;
         var searchReq = new XMLHttpRequest();
         searchReq.onreadystatechange = function(){
-          if(searchReq.status == 200 && searchReq.readyState == 4){
-            console.log("recieved response to search.");
-          }
+          onSearchFormResults(searchReq);
         }
-        searchReq.open("POST", "/search", true);
-        searchReq.send(document.getElementById("recipeTextBox").value)
+        console.log("Get request to "+url);
+        searchReq.open("GET", url, true);
+        searchReq.send();
+      }
+
+      function onSearchFormResults(searchReq){
+        if(searchReq.status == 200 && searchReq.readyState == 4){
+          var searchResults = JSON.parse(searchReq.responseText);
+          var resultsParent = document.getElementById("searchResultDiv");
+          console.log(searchResults);
+          resultsParent.innerHTML ="";
+          searchResults.results.forEach(function(el){
+            resultsParent.innerHTML += recipeSearchResultTemplate(el);
+          })
+
+        }
       }
     </script>
   </body>

@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/", serveIndex);
 
-app.post("/search", handleSearch);
+app.get("/search", handleSearch);
 
 app.listen(port, function(){
   console.log("App listening on port " + port);
@@ -28,23 +28,19 @@ function serveIndex(req, res){
 
 
 function handleSearch(req, res){
-  //var searchQuery = url.parse(req.url, true).query;
- var result = "";
- req.on("data", function(chunk){
-   result += chunk;
- })
- req.on("end", function(chunk){
-   console.log(result);
-   res.end("Hurray!");
- })
+  var searchQuery = url.parse(req.url, true).query;
+  console.log("Food Search Query: "+searchQuery.recipe);
+  searchFood(searchQuery.recipe, function(searchResults){
+  res.send(searchResults);
+  })
 }
 
-function searchFood(recipe){
+function searchFood(recipe, callback){
   unirest.get(foodServicePath + "recipes/search?number="+ defaultResultCount +"&query="+recipe)
   .header("X-Mashape-Key", FOOD_API_KEY)
   .end(function(result){
     console.log(result.body);
-    res.end("Found Search");
+    callback(result.body);
   });
 }
 
