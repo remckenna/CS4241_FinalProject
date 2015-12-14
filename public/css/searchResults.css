@@ -1,0 +1,23 @@
+.recipeSearchResult{
+  display:flex;
+  flex-direction: row;
+  margin:10px;
+  border: solid, 2px;
+}
+
+.recipeResultTitle{
+
+}
+
+.recipeResultImage{
+  width:200px;
+  height: 200px;
+}
+.recipeResultImage img{
+  width:100%;
+  height:auto;
+}
+
+.cookingTime{
+
+}

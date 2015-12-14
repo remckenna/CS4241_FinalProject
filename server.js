@@ -8,6 +8,7 @@ var express = require("express");
 var path = require("path");
 var unirest = require("unirest");
 var url = require("url");
+var fs = require("fs");
 
 var app = express();
 var port = process.env.PORT || 8080;
@@ -30,9 +31,10 @@ function serveIndex(req, res){
 function handleSearch(req, res){
   var searchQuery = url.parse(req.url, true).query;
   console.log("Food Search Query: "+searchQuery.recipe);
-  searchFood(searchQuery.recipe, function(searchResults){
-  res.send(searchResults);
-  })
+  //Don't use the search food function for testing as it will us up our limited api calls.
+  //searchFood(searchQuery.recipe, function(searchResults){
+  //})
+  res.send(getPlacholderData("placeHolderREcipeSearchResults.json"));
 }
 
 function searchFood(recipe, callback){
@@ -52,3 +54,7 @@ function testOnFoodSearch(req, res){
   serveIndex(req,res);
   });
 };
+
+function getPlacholderData(filename){
+  return fs.readFileSync(filename);
+}
