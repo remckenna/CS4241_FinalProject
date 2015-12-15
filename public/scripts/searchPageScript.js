@@ -1,20 +1,7 @@
-function onSearchFormSubmit(){
-  var url = "/search?recipe="+document.getElementById("recipeTextBox").value;
-  var searchReq = new XMLHttpRequest();
-  searchReq.onreadystatechange = function(){
-    onSearchFormResults(searchReq);
-  }
-  console.log("Get request to "+url);
-  searchReq.open("GET", url, true);
-  searchReq.send();
-}
-
 $(document).ready(function(){
-  $("#recipeSubmitButton").click(function(){
-    var url = "/search?recipe="+$("#recipeTextBox").val();
-    console.log("Search sent");
-    $.get(url, onSearchFormResults);
-  })
+  var url = "/search"+window.location.search;
+  console.log("Search sent");
+  $.get(url, onSearchFormResults);
 })
 
 function onSearchFormResults(data, status){

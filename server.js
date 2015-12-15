@@ -19,6 +19,8 @@ app.get("/", serveIndex);
 
 app.get("/search", handleSearch);
 
+app.get("/recipe", getRecipe);
+
 app.listen(port, function(){
   console.log("App listening on port " + port);
 });
@@ -27,14 +29,25 @@ function serveIndex(req, res){
   res.sendFile(path.join(__dirname, "public/index.html"));
 }
 
+function getRecipe(req, res){
+  var searchQuery = url.parse(req.url, true).query;
+  console.log("Requested recipe for ID: " + searchQuery.id);
+  unirest.get(foodServicePath + "/recipes/" + searchQuery.id + "/information")
+  .header("X-Mashape-Key", FOOD_API_KEY)
+  .end(function(result){
+    res.send(result);
+  })
+}
+
 
 function handleSearch(req, res){
   var searchQuery = url.parse(req.url, true).query;
   console.log("Food Search Query: "+searchQuery.recipe);
   //Don't use the search food function for testing as it will us up our limited api calls.
-  //searchFood(searchQuery.recipe, function(searchResults){
+//  searchFood(searchQuery.recipe, function(searchResults){
+  //  res.send(JSON.stringify(searchResults));
   //})
-  res.send(getPlacholderData("placeHolderREcipeSearchResults.json"));
+   res.send(getPlacholderData("placeHolderREcipeSearchResults.json"));
 }
 
 function searchFood(recipe, callback){

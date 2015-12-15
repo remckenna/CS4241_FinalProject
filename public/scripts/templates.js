@@ -1,9 +1,19 @@
 var recipeSearchResultTemplate = _.template(
-  "<div class='recipeSearchResult' data-recipeID='<%=id%>'>"+
-    "<div class='recipeResultImage'>"+
-      "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+  "<a href='/recipe.html?id=<%=id%>'>"+
+    "<div class='recipeSearchResult' data-recipeID='<%=id%>'>"+
+      "<div class='recipeImage'>"+
+        "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+      "</div>"+
+      "<h2 class='recipeTitle'><%=title%></h2>"+
+      "<p class='cookingTime'> Ready in <%=readyInMinutes%> minutes</p>"+
     "</div>"+
-    "<h3 class='recipeResultTitle'><%=title%></h3>"+
-    "<p class='cookingTime'> Ready in <%=readyInMinutes%> minutes</p>"+
+    "</a>"
+);
+
+var recipeIngredientTemplate = _.template(
+  "<div class='recipeIngredients'>"+
+    "<h2 class='recipeTitle'><%=title%></h2>"+
+    "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+
   "</div>"
 );

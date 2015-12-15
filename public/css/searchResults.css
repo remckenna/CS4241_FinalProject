@@ -6,15 +6,15 @@
   overflow: hidden;
 }
 
-.recipeResultTitle{
+.recipeTitle{
   margin: 0px 10px 5px 10px;
 }
 
-.recipeResultImage{
+.recipeImage{
   width:200px;
   height: 200px;
 }
-.recipeResultImage img{
+.recipeImage img{
   width:100%;
   height:auto;
 }
