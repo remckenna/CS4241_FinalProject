@@ -9,15 +9,19 @@ function onSearchFormSubmit(){
   searchReq.send();
 }
 
-function onSearchFormResults(searchReq){
-  if(searchReq.status == 200 && searchReq.readyState == 4){
-    var searchResults = JSON.parse(searchReq.responseText);
-    var resultsParent = document.getElementById("searchResultDiv");
-    console.log(searchResults);
-    resultsParent.innerHTML ="";
-    searchResults.results.forEach(function(el){
-      resultsParent.innerHTML += recipeSearchResultTemplate(el);
-    })
+$(document).ready(function(){
+  $("#recipeSubmitButton").click(function(){
+    var url = "/search?recipe="+$("#recipeTextBox").value;
+    console.log("Search sent");
+    $.get(url, onSearchFormResults);
+  })
+})
 
-  }
+function onSearchFormResults(data, status){
+    var searchResults = JSON.parse(data);
+    console.log(searchResults);
+    $("#searchResultDiv").empty();
+    searchResults.results.forEach(function(el){
+      $("#searchResultDiv").append(recipeSearchResultTemplate(el));
+    })
 }

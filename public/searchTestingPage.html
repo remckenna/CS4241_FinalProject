@@ -13,10 +13,10 @@
     <meta charset="utf-8">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/searchResults.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="scripts/templates.js"></script>
-    <script src="scripts/searchPageScript.js"></script>
-  </head>
+    <script src="scripts/searchPageScript.js"></script>  </head>
 
   <body>
     <div id="header">
@@ -24,7 +24,7 @@
     <div id="pageBody">
       <form method="POST"onsubmit="return false">
         <label for="recipeTextBox">Recipe For: <input id="recipeTextBox" type="text" name="recipe"></label>
-        <label for="recipeSubmitButton"><input id="recipeSubmitButton" type="submit" onclick="onSearchFormSubmit()"></label>
+        <label for="recipeSubmitButton"><input id="recipeSubmitButton" type="submit"></label>
       </form>
       <div id="searchResultDiv" class="searchResults">
       </div>

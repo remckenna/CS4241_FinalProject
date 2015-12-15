@@ -1,5 +1,5 @@
 var recipeSearchResultTemplate = _.template(
-  "<div class='recipeSearchResult'>"+
+  "<div class='recipeSearchResult' data-recipeID='<%=id%>'>"+
     "<div class='recipeResultImage'>"+
       "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
     "</div>"+
