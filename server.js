@@ -35,7 +35,7 @@ function getRecipe(req, res){
   //unirest.get(foodServicePath + "/recipes/" + searchQuery.id + "/information")
   //.header("X-Mashape-Key", FOOD_API_KEY)
   //.end(function(result){
-    res.send(result);
+    //res.send(result);
   //})
   res.send();
 }
