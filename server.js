@@ -32,11 +32,12 @@ function serveIndex(req, res){
 function getRecipe(req, res){
   var searchQuery = url.parse(req.url, true).query;
   console.log("Requested recipe for ID: " + searchQuery.id);
-  unirest.get(foodServicePath + "/recipes/" + searchQuery.id + "/information")
-  .header("X-Mashape-Key", FOOD_API_KEY)
-  .end(function(result){
+  //unirest.get(foodServicePath + "/recipes/" + searchQuery.id + "/information")
+  //.header("X-Mashape-Key", FOOD_API_KEY)
+  //.end(function(result){
     res.send(result);
-  })
+  //})
+  res.send();
 }
 
 
