@@ -11,7 +11,7 @@ function onSearchFormSubmit(){
 
 $(document).ready(function(){
   $("#recipeSubmitButton").click(function(){
-    var url = "/search?recipe="+$("#recipeTextBox").value;
+    var url = "/search?recipe="+$("#recipeTextBox").val();
     console.log("Search sent");
     $.get(url, onSearchFormResults);
   })
