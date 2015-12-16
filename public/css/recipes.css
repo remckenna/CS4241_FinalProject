@@ -6,15 +6,20 @@
   overflow: hidden;
 }
 
+.recipeSearchResultLink{
+  text-decoration: none;
+  color:inherit;
+}
+
 .recipeTitle{
   margin: 0px 10px 5px 10px;
 }
 
-.recipeImage{
+.recipeImageContainer{
   width:200px;
   height: 200px;
 }
-.recipeImage img{
+.recipeImageContainer img{
   width:100%;
   height:auto;
 }

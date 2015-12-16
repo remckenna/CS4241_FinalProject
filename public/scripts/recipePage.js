@@ -5,6 +5,7 @@ $(document).ready(function(){
 })
 
 function onGetRecipeInformation(data, status){
-  console.log(data);
-  $("body").append(recipeIngredientTemplate(data.body));
+  var recipe = JSON.parse(data).body;
+  console.log(recipe);
+  $("body").append(recipeIngredientTemplate(recipe));
 }
