@@ -19,16 +19,12 @@ var path = require("path");
 var unirest = require("unirest");
 var url = require("url");
 var fs = require("fs");
+var bodyParser = require("body-parser");
 var app = express();
-
-var testUser = createUser("bill", "password1");
-var db = getDatabase();
-if(validateUserName(testUser, db)){
-  addUserToDB(testUser, db);
-}
 
 //=============== EXPRESS =================
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(bodyParser.urlencoded({extended: true}));
 
 //=============== ROUTES =================
 app.get("/", serveIndex);
@@ -86,7 +82,18 @@ function searchFood(recipe, callback){
 }
 
 function handleAdd(req, res){
-  res.send();
+  console.log("lol");
+  var db = getDatabase();
+  var user = createUser(req.body.newusername, req.body.newpassword);
+  console.log(user);
+  if(validateUser(user, db)){
+    addUserToDB(user, db);
+    console.log(user +" added to the database");
+  }
+  else{
+    console.log("user could not be added.");
+  }
+  serveIndex(req, res);
 }
 
 function testOnFoodSearch(req, res){
@@ -124,10 +131,10 @@ function addUserToDB(user, db){
   fs.writeFileSync(USER_DB, JSON.stringify(db));
 }
 
-function validateUserName(user, db){
+function validateUser(user, db){
   var result = true;
   db.users.forEach(function(el){
-    if(el.userName == user.userName){
+    if(el.userName == user.userName && user.userName.length > 0){
       console.log("Username: " + user.userName + " already exists.");
       result = false;
       return;
