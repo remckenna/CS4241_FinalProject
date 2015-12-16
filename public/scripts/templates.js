@@ -17,7 +17,7 @@ var recipeIngredientTemplate = _.template(
     "<h3>Ingredients</h3>"+
     "<ul>"+
       "<% _.each(extendedIngredients, function(el, index, list){ %>"+
-         "<li><%=el.name%></li>"+
+         "<li class='recipeIngredientli'><b><%=el.amount%></b> <%= el.unit%> <%=el.name%></li>"+
        "<% }); %>"+
     "</ul>"+
     "<p>Detailed instructions can be found at <a href='<%=sourceUrl%>'><%=sourceName%></a></p>"+
