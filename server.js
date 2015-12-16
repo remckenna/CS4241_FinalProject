@@ -13,6 +13,7 @@ var unirest = require("unirest");
 var url = require("url");
 var fs = require("fs");
 var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 
 //=============== GlOBALS =================
 var USER_DB = "users.json";
@@ -21,26 +22,48 @@ var foodServicePath = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.co
 var defaultCuisineQuery = "african%2Cchinese%2Cjapanese%2Ckorean%2Cvietnamese%2Chai%2Cindian%2Cbritish%2Cirish%2Cfrench%2Citalian%2Cmexican%2Cspanish%2Cmiddle+eastern%2Cjewish%2Camerican%2Ccajun%2Csouthern%2Cgreek%2Cgerman%2Cnodic%2Ceastern+european%2Ccaribbean%2Clatin";
 var defaultDietQuery = "pescetarian";
 var defaultResultCount = "10";
+var cookieSecret = 'needToFood secret pass';
 
 //=============== EXPRESS =================
-var app = express();
+var app = express(cookieSecret);
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 
 //=============== ROUTES =================
 app.get("/", serveIndex);
 
 app.get("/search", handleSearch);
 app.get("/recipe", getRecipe);
+app.get("/userinfo", getUserInfo);
+app.post("/addRecipe", addRecipe);
 
 app.post("/logUser", handleLog);
 app.post("/addUser", handleAdd);
+app.get("/logout", handleLogout); //TODO in progress/work
 
 function serveIndex(req, res){
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  console.log("REQ Cookies: ", req.headers.cookie);
+  console.log("RES Cookies: ", res.cookies);
+  if (req.cookies.user) { //req.cookies.active) {
+    // If cookie is active and valid, redirect user to his own page
+    console.log("Cookie found, current user " + req.cookies.user + " is in session!");
+    res.sendFile(path.join(__dirname, "public/index.html")); // TODO Redirect user to information page
+  } else {
+    // If there are no cookies, send user to main
+    console.log("No cookies found, guest user.");
+    res.sendFile(path.join(__dirname, "public/index.html"));
+  }
 }
 
+function getUserInfo(req, res){
+  var userName = req.cookies.user;
+  var db = getDatabase();
+  var user = getUserFromDB(userName, db);
+
+  res.send(JSON.stringify(user));
+}
 function getRecipe(req, res){
   var searchQuery = url.parse(req.url, true).query;
   console.log("Requested recipe for ID: " + searchQuery.id);
@@ -50,6 +73,16 @@ function getRecipe(req, res){
     res.send(JSON.stringify(result));
   })
   //res.send();
+}
+
+function addRecipe(req, res) {
+  console.log("addRecipe()");
+  var recipe = req.body;
+  console.log(req.body);
+  var db = getDatabase();
+  var userName = req.cookies.user;
+  addRecipeToUserDB(userName, recipe, db );
+  res.end();
 }
 
 function handleSearch(req, res){
@@ -73,6 +106,11 @@ function searchFood(recipe, callback){
 
 function handleAdd(req, res){
   console.log("handleAdd request");
+
+  // Check if has an user logged in
+  if (req.cookies.user) {
+    console.log("handleAdd() ERR: User " + req.cookies.user + " is already logged in!!!");
+  }
   console.log("Create New User Request: User: " + req.body.newusername + " Pass: " + req.body.newpassword);
 
   var db = getDatabase();
@@ -82,16 +120,23 @@ function handleAdd(req, res){
     // No existing users w/ given name found, so add new user to DB
     addUserToDB(user, db);
     console.log("New user " + user.userName + " added to the database");
+    var day = 24 * 60 * 60 * 1000; // Alternatively, make it infinite
+    res.cookie('user', user.userName, { maxAge: day });
   }
   else{
     // Either invalid input was given or an user with given name already exists
     console.log("User could not be added.");
   }
-  serveIndex(req, res);
+  res.send();
 }
 
 function handleLog(req, res){
   console.log("handleLog request");
+
+  // Check if has an user logged in
+  if (req.cookies.user) {
+    console.log("handleLog() ERR: User " + req.cookies.user + " is already logged in!!!");
+  }
   console.log("Login Request: User: " + req.body.username + " Pass: " + req.body.password);
 
   var db = getDatabase();
@@ -99,6 +144,10 @@ function handleLog(req, res){
   if (validateLogin(req.body.username, req.body.password, db)) {
     // Information matches stored user information on DB
     console.log("Successful Login");
+    // TODO create cookie with user information
+    // Hrs/Day x Min/Hrs x Sec/Min x Milisec/Sec
+    var day = 24 * 60 * 60 * 1000; // Alternatively, make it infinite
+    res.cookie('user', req.body.username, { Age: day });
   } else {
     // Information does not match stored user information on DB
     console.log("User/Pass mistmatch");
@@ -106,6 +155,15 @@ function handleLog(req, res){
 
   // Return default page
   serveIndex(req, res); // TEMP
+}
+
+function handleLogout(req, res) {
+  if (!req.cookies.user) {
+    res.clearCookie('user');
+  } else {
+    console.log("handleLogout() ERR: No user is currently logged in!!!");
+  }
+  res.redirect(req.session.backURL || '/');
 }
 
 function testOnFoodSearch(req, res){
@@ -172,8 +230,33 @@ function addUserToDB(user, db){
   fs.writeFileSync(USER_DB, JSON.stringify(db));
 }
 
-function generateCookie(user, pass) {
-  // nothing yet
+function addRecipeToUserDB(username, recipe, db) {
+  var change = false;
+  db.users.forEach( function(el) {
+    if(el.userName == username) {
+      el.ingredientLists.push(recipe);
+      change = true;
+    }
+  })
+
+  if(change) {
+    console.log("Updated DB: Added new recipe to user " + username);
+    fs.writeFileSync(USER_DB, JSON.stringify(db));
+  } else {
+    console.log("User not found!");
+  }
+}
+
+function getUserFromDB(username, db){
+  var result = {};
+  db.users.forEach(function(el){
+    if(el.userName == username){
+      console.log("Found user: " + el.userName);
+      result = el;
+      return;
+    }
+  })
+  return result;
 }
 
 //=============== PORT =================

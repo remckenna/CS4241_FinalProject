@@ -1,12 +1,11 @@
 
-<!-- server.js
+<!-- userpage.html
   - CS 4241 - Webware
   - Final Project
   - Students: Robert McKenna / Lucas Ruiz Lebrao
   - Title: Quick Food Parser
   - Description: something
   -->
-
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -16,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="scripts/templates.js"></script>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/userpage.js"></script>
   </head>
 
   <body>
@@ -45,27 +44,10 @@
           </div>
         </div>
 
-        <!-- Page Body -->
-        <div class="doc-body" role="document">
-          <form accept-charset="UTF-8" action="/logUser" class="body-login-form" method="POST">
-            <label for="user"> Username:</label>
-            <input type="text" name="username" id="user" value="" style="color: #00073A;" required="true"> <br>
-            <label for="pass"> Password: </label>
-            <input type="text" name="password" id="pass" value="" style="color: #00073A" required="true"> <br>
-            <input type="submit" value="Submit">
-          </form>
-          <form accept-charset="UTF-8" action="/addUser" class="body-login-form" method="POST">
-            <label for="user"> Username:</label>
-            <input type="text" name="newusername" id="newuser" value="" style="color: #00073A;" required="true"> <br>
-            <label for="pass"> Password: </label>
-            <input type="text" name="newpassword" id="newpass" value="" style="color: #00073A" required="true"> <br>
-            <input type="submit" value="Submit">
-          </form>
+        <div class="page-body">
+          <div class="page-userinfo"> </div>
+          <div class="page-recipes"> </div>
         </div>
-
-        <!-- Page Foot -->
-
       </div>
     </div>
   </body>
-</html>
