@@ -15,7 +15,8 @@ $(document).ready(function(){
 
 function addUserInfo(data, status){
   var user = JSON.parse(data);
-  console.log(user.ingredientLists[0]);
-  $("body").append(recipeIngredientTemplate(user.ingredientLists[0]));
-
+  //console.log(user.ingredientLists[0]);
+  _.each(user.ingredientLists, function(el){
+    $("body").append(recipeSearchResultTemplate(el));
+  });
 }
