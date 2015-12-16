@@ -1,91 +1,3 @@
-<<<<<<< HEAD
-#page-container {
-  min-height: 100%;
-}
-
-#page-wrapper {
-  padding-bottom: 2em;
-  max-width: 900px;
-  margin: auto;
-}
-
-#header-base {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  min-width: 1000px;
-  background-color: white;
-  /* border-bottom: 1px solid black; */
-}
-
-#header-container {
-  width: 980px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-#header-logo {
-  font: 32px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  position: relative;
-  float: left;
-  height: 26px;
-  margin-right: 15px;
-  color: #333;
-  text-decoration: none;
-  background-color: transparent;
-}
-
-#header-search {
-  margin-top: 0px;
-  display: block;
-}
-
-#header-search FORM {
-  position: relative;
-  float: left;
-  width: 360px;
-  margin-right:10px;
-}
-
-#header-search INPUT {
-  background: none;
-  border: 0;
-  box-shadow: none;
-  min-height: 22px;
-  display: inline-block;
-  font-size: 12px;
-  padding: 3px 5px;
-  line-height: 16px;
-  width: 250px;
-}
-
-#header-leftnav {
-  float: left;
-  margin-top: -3px;
-  margin-bottom: -3px;
-  box-sizing: border-box;
-}
-
-#header-leftnav UL {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-#header-leftnav LI {
-    display: inline;
-    padding: 0 0 0 1em;
-}
-
-#header-rightnav {
-  float: right;
-  margin-top: -3px;
-  margin-bottom: -3px;
-  box-sizing: border-box;
-}
-
-.clearfix {
-  clear: both;
-=======
 /* main.css
  * CS 4241 - Webware
  * Final Project
@@ -96,7 +8,88 @@
 
 body
 {
-  background-color: #FFFFFF;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
->>>>>>> development
+ background-color: #FFFFFF;
+ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  margin: 0px 20px 0px 20px;
+}
+
+.container {
+  /* Flex */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item {
+  /* Flex */
+  flex-basis: auto;
+  align-self: center;
+
+}
+
+.clearfix {
+  clear: both;
+}
+
+#page-container { }
+
+#page-header {
+  /* Flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  /* Spacing */
+  margin-right: 30px;
+}
+
+#header-base { }
+
+#header-container { }
+
+#header-logo {
+  /* Flex */
+  order: 1;
+  flex-basis: auto;
+  align-self: auto;
+  flex-grow: 1;
+
+  /* Font */
+  font: 32px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height: 26px;
+  margin-right: 15px;
+  color: #333;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+#header-leftnav {
+  /* Flex */
+  order: 2;
+  flex-basis: auto;
+  align-self: center;
+  flex-grow: 2;
+}
+
+#header-leftnav UL {
+
+}
+
+#header-leftnav LI {
+  display: inline;
+  padding: 0 0 0 1em;
+}
+
+#header-rightnav {
+  /* Flex */
+  order: 3;
+  flex-basis: auto;
+  align-self: center;
 }

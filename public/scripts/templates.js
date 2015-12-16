@@ -1,3 +1,32 @@
+var headerActiveTemplate = _.template (
+  "<a id='header-logo' href='/'> needToFood </a>" +
+  "<div id='header-leftnav'>" +
+    "<ul id='header-right' role='navigation'>" +
+      "<li class='header-nav-item'> <a href='/searchTestingPage.html'> Search</a> </li>" +
+    "</ul>" +
+  "</div>" +
+  "<div id='header-rightnav'>" +
+    "<a class='header-nav-btn' href='/userpage.html'> Profile</a>" +
+    "<a class='header-nav-btn' href='/logout'> Log Out</a>" +
+  "</div>"
+);
+
+var headerInactiveTemplate = _.template (
+  "<a id='header-logo' href='/'> needToFood </a>" +
+  "<div id='header-leftnav'>" +
+    "<ul id='header-right' role='navigation'>" +
+      "<li class='header-nav-item'> <a href='/searchTestingPage.html'> Search</a> </li>" +
+    "</ul>" +
+  "</div>" +
+  "<div id='header-rightnav'>" +
+    "<a class='header-nav-btn' href='/addUser'> Sign Up</a>" +
+    "<a class='header-nav-btn' href='/logUser'> Log In</a>" +
+  "</div>"
+);
+
+// var footerTemplate = _.template (
+// );
+
 var recipeSearchResultTemplate = _.template(
   "<a class= 'recipeSearchResultLink' href='/recipe.html?id=<%=id%>'>"+
     "<div class='recipeSearchResult' data-recipeID='<%=id%>'>"+

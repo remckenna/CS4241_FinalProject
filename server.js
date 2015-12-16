@@ -41,20 +41,17 @@ app.post("/addRecipe", addRecipe);
 
 app.post("/logUser", handleLog);
 app.post("/addUser", handleAdd);
-app.get("/logout", handleLogout); //TODO in progress/work
+app.get("/logout", handleLogout);
 
 function serveIndex(req, res){
-  console.log("REQ Cookies: ", req.headers.cookie);
-  console.log("RES Cookies: ", res.cookies);
-  if (req.cookies.user) { //req.cookies.active) {
-    // If cookie is active and valid, redirect user to his own page
+  if (req.cookies.user) {
+    // Found valid cookie
     console.log("Cookie found, current user " + req.cookies.user + " is in session!");
-    res.sendFile(path.join(__dirname, "public/index.html")); // TODO Redirect user to information page
   } else {
-    // If there are no cookies, send user to main
+    // No valid cookie
     console.log("No cookies found, guest user.");
-    res.sendFile(path.join(__dirname, "public/index.html"));
   }
+  res.sendFile(path.join(__dirname, "public/index.html"));
 }
 
 function getUserInfo(req, res){
@@ -127,7 +124,7 @@ function handleAdd(req, res){
     // Either invalid input was given or an user with given name already exists
     console.log("User could not be added.");
   }
-  res.send();
+  res.redirect("./userpage.html");
 }
 
 function handleLog(req, res){
@@ -153,12 +150,13 @@ function handleLog(req, res){
     console.log("User/Pass mistmatch");
   }
 
-  // Return default page
-  serveIndex(req, res); // TEMP
+  // Return user default page
+  res.redirect("./userpage.html");
 }
 
 function handleLogout(req, res) {
-  if (!req.cookies.user) {
+  if (req.cookies.user) {
+    console.log("handleLogout(): Found cookie, removing.");
     res.clearCookie('user');
   } else {
     console.log("handleLogout() ERR: No user is currently logged in!!!");

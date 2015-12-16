@@ -1,9 +1,17 @@
 $(document).ready(function(){
   var userCookie = getCookie("user");
   console.log(userCookie != "");
-  if(userCookie != ""){
-    window.location.pathname = "/userPage.html";
+
+  if(userCookie != "" ){
+    // If user has a cookie w/ an ID
+    // window.location.pathname = "/userPage.html";
+    $("#page-header").append(headerActiveTemplate());
+  } else {
+    // Otherwise
+    $("#page-header").append(headerInactiveTemplate());
   }
+  // Add dynamic footer to page
+  //$("#page-footer").append(footerTemplate());
 })
 
 function getCookie(cname) {
