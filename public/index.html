@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>needToFood Website</title>
+    <meta charset="utf-8">
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="page-container">
+      <div id="page-wrapper">
+        <!-- Page Header -->
+        <div class="header-base" role="banner">
+          <div class="header-container">
+            <a id="header-logo" href="/"> needToFood </a>
+            <div id="header-search">
+              <form accept-charset="UTF-8" action="/search" class="header-search-form" method="get">
+                <input type="text" class="header-search-focus" placeholder="Find recipes" tabindex="1">
+              </form>
+            </div>
+            <div id="header-leftnav">
+              <ul class="header-right" role="navigation">
+                <li class="header-nav-item"> <a href="/"> About</a> </li>
+                <li> <a href="/" class="header-nav-item"> HowTo</a> </li>
+              </ul>
+            </div>
+            <div id="header-rightnav">
+              <a class="btn-signup" href="/signup"> Sign Up</a>
+              <a class="btn-login" href="/login"> Log In</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Body -->
+        <div class="doc-body" role="document">
+          <form accept-charset="UTF-8" action="/loginRequest" class="body-login-form" method="post">
+            <label for="user"> Username:</label>
+            <input type="text" name="username" id="user" value="" style="color: #00073A;" required="true"> <br>
+            <label for="pass"> Password: </label>
+            <input type="text" name="password" id="pass" value="" style="color: #00073A" required="true"> <br>
+            <input type="submit" value="Submit">
+          </form>
+          <form accept-charset="UTF-8" action="/addUser" class="body-login-form" method="post">
+            <label for="user"> Username:</label>
+            <input type="text" name="newusername" id="newuser" value="" style="color: #00073A;" required="true"> <br>
+            <label for="pass"> Password: </label>
+            <input type="text" name="newpassword" id="newpass" value="" style="color: #00073A" required="true"> <br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+        <!-- Page Foot -->
+      </div>
+    </div>
+  </body>
+</html>
