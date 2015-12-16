@@ -89,10 +89,10 @@ function handleSearch(req, res){
   var searchQuery = url.parse(req.url, true).query;
   console.log("Food Search Query: "+searchQuery.recipe);
   // Don't use the search food function for testing as it will us up our limited api calls.
-  // searchFood(searchQuery.recipe, function(searchResults){
-  //  res.send(JSON.stringify(searchResults));
-  // });
-  res.send(getPlacholderData("placeHolderREcipeSearchResults.json"));
+   searchFood(searchQuery.recipe, function(searchResults){
+    res.send(JSON.stringify(searchResults));
+   });
+  //res.send(getPlacholderData("placeHolderREcipeSearchResults.json"));
 }
 
 function searchFood(recipe, callback){
@@ -163,7 +163,7 @@ function handleLogout(req, res) {
   } else {
     console.log("handleLogout() ERR: No user is currently logged in!!!");
   }
-  res.redirect(req.session.backURL || '/');
+  res.redirect( '/');
 }
 
 function testOnFoodSearch(req, res){
