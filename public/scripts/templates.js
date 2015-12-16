@@ -27,6 +27,14 @@ var headerInactiveTemplate = _.template (
 // var footerTemplate = _.template (
 // );
 
+var userInfoTemplate = _.template(
+  "<div>" +
+  "<h2> <%= userName %> </h2>" +
+  "<h3> Password: <%= password %> </h3>" +
+  "<h3> Recipes stored: <%= ingredientLists.length %> </h3>" +
+  "</div>"
+);
+
 var recipeSearchResultTemplate = _.template(
   "<a class= 'recipeSearchResultLink' href='/recipe.html?id=<%=id%>'>"+
     "<div class='recipeSearchResult' data-recipeID='<%=id%>'>"+

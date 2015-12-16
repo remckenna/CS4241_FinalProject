@@ -27,14 +27,18 @@ $(document).ready(function(){
   // Build body using template
   url = "/userinfo";
   $.get(url, addUserInfo);
-
 })
 
 function addUserInfo(data, status){
   var user = JSON.parse(data);
-  //console.log(user.ingredientLists[0]);
+  console.log(user);
+
+  // Current User information
+  $("#page-userinfo").append(userInfoTemplate(user));
+
+  // Previous searches
   _.each(user.ingredientLists, function(el){
-    $("body").append(recipeSearchResultTemplate(el));
+    $("#page-recipes").append(recipeSearchResultTemplate(el));
   });
 }
 

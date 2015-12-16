@@ -24,6 +24,7 @@ a {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
+  align-content: space-between;
 }
 
 .item {
@@ -31,6 +32,13 @@ a {
   flex-basis: auto;
   align-self: center;
 
+}
+
+.right {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-self: flex-end;
 }
 
 .clearfix {
