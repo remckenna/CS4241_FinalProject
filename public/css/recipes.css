@@ -1,0 +1,29 @@
+.recipeSearchResult{
+  display:flex;
+  flex-direction: row;
+  margin:10px;
+  border: solid 2px;
+  overflow: hidden;
+}
+
+.recipeSearchResultLink{
+  text-decoration: none;
+  color:inherit;
+}
+
+.recipeTitle{
+  margin: 0px 10px 5px 10px;
+}
+
+.recipeImageContainer{
+  width:200px;
+  height: 200px;
+}
+.recipeImageContainer img{
+  width:100%;
+  height:auto;
+}
+
+.cookingTime{
+
+}
