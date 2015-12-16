@@ -49,7 +49,6 @@ function getRecipe(req, res){
   .end(function(result){
     res.send(JSON.stringify(result));
   })
-  //res.send();
 }
 
 function handleSearch(req, res){

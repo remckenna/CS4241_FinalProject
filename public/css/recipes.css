@@ -1,4 +1,6 @@
+
 .recipeSearchResult{
+  height:200px;
   display:flex;
   flex-direction: row;
   margin:10px;
@@ -11,8 +13,12 @@
   color:inherit;
 }
 
+.recipeInformationContainer{
+  margin:5px 10px 10px 10px;
+}
+
 .recipeTitle{
-  margin: 0px 10px 5px 10px;
+
 }
 
 .recipeImageContainer{
@@ -22,8 +28,14 @@
 .recipeImageContainer img{
   width:100%;
   height:auto;
+  margin:auto;
 }
 
 .cookingTime{
 
+}
+
+.ingredientsImage{
+  width:100%;
+  height:300px;
 }

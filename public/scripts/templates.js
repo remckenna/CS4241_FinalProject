@@ -4,8 +4,10 @@ var recipeSearchResultTemplate = _.template(
       "<div class='recipeImageContainer'>"+
         "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
       "</div>"+
-      "<h2 class='recipeTitle'><%=title%></h2>"+
-      "<p class='cookingTime'> Ready in <%=readyInMinutes%> minutes</p>"+
+      "<div class='recipeInformationContainer'>"+
+        "<h2 class='recipeTitle'><%=title%></h2>"+
+        "<p class='cookingTime'> Ready in <%=readyInMinutes%> minutes</p>"+
+      "</div>"+
     "</div>"+
     "</a>"
 );
@@ -13,7 +15,9 @@ var recipeSearchResultTemplate = _.template(
 var recipeIngredientTemplate = _.template(
   "<div class='recipeIngredients'>"+
     "<h2 class='recipeTitle'><%=title%></h2>"+
-    "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+    "<div class='recipeImageContainer'>"+
+      "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+    "</div>"+
     "<h3>Ingredients</h3>"+
     "<ul>"+
       "<% _.each(extendedIngredients, function(el, index, list){ %>"+
