@@ -20,6 +20,7 @@ var headerInactiveTemplate = _.template (
 var userInfoTemplate = _.template(
   "<div>" +
   "<h2> <%= userName %> </h2>" +
+  "<h3> Password: <%= password %> </h3>" +
   "<h3> Recipes stored: <%= ingredientLists.length %> </h3>" +
   "</div>"
 );
@@ -41,7 +42,8 @@ var recipeSearchResultTemplate = _.template(
 var recipeIngredientTemplate = _.template(
   "<div class='recipeIngredients'>"+
     "<h2 class='recipeTitle'><%=title%></h2>"+
-      "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+<<<<<<< HEAD
+    "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
     "<div class='ingredient-container'>"+
       "<h3>Ingredients</h3>"+
         "<ul>"+
@@ -52,4 +54,17 @@ var recipeIngredientTemplate = _.template(
         "<p>Detailed instructions can be found at <a href='<%=sourceUrl%>'><%=sourceName%></a></p>"+
       "</div>"+
     "</div>"
+=======
+    "<div class='recipeImageContainer'>"+
+      "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
+    "</div>"+
+    "<h3>Ingredients</h3>"+
+    "<ul>"+
+      "<% _.each(extendedIngredients, function(el, index, list){ %>"+
+         "<li class='recipeIngredientli'><b><%=el.amount%></b> <%= el.unit%> <%=el.name%></li>"+
+       "<% }); %>"+
+    "</ul>"+
+    "<p>Detailed instructions can be found at <a href='<%=sourceUrl%>'><%=sourceName%></a></p>"+
+  "</div>"
+>>>>>>> development-APISetup
 );

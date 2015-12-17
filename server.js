@@ -69,7 +69,6 @@ function getRecipe(req, res){
   .end(function(result){
     res.send(JSON.stringify(result));
   })
-  //res.send();
 }
 
 function addRecipe(req, res) {
