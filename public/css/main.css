@@ -11,3 +11,7 @@ body
   background-color: #FFFFFF;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+
+#masthead {
+  border-bottom: 3px solid #70748C;
+}
