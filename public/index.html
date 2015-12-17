@@ -39,20 +39,26 @@
 
       <!-- Page Body -->
       <div id="page-body" class="item" role="document">
-        <form accept-charset="UTF-8" action="/logUser" class="body-login-form" method="POST">
-          <label for="user"> Username:</label>
-          <input type="text" name="username" id="user" value="" style="color: #00073A;" required="true"> <br>
-          <label for="pass"> Password: </label>
-          <input type="text" name="password" id="pass" value="" style="color: #00073A" required="true"> <br>
-          <input type="submit" value="Submit">
-        </form>
-        <form accept-charset="UTF-8" action="/addUser" class="body-login-form" method="POST">
-          <label for="user"> Username:</label>
-          <input type="text" name="newusername" id="newuser" value="" style="color: #00073A;" required="true"> <br>
-          <label for="pass"> Password: </label>
-          <input type="text" name="newpassword" id="newpass" value="" style="color: #00073A" required="true"> <br>
-          <input type="submit" value="Submit">
-        </form>
+        <div id="page-info">
+          <h1 id="info-head"> Info </h1>
+        </div>
+        <div id="page-form">
+          <h1 id="form-text"> </h1>
+          <form id="form-login" accept-charset="UTF-8" action="/logUser" class="body-login-form" method="POST">
+            <label for="user"> Username:</label>
+            <input type="text" name="username" id="user" value="" style="color: #00073A;" required="true"> <br>
+            <label for="pass"> Password: </label>
+            <input type="password" name="password" id="pass" value="" style="color: #00073A" required="true"> <br>
+            <input type="submit" value="Submit">
+          </form>
+          <form id="form-signup" accept-charset="UTF-8" action="/addUser" class="body-login-form" method="POST">
+            <label for="user"> Username:</label>
+            <input type="text" name="newusername" id="newuser" value="" style="color: #00073A;" required="true"> <br>
+            <label for="pass"> Password: </label>
+            <input type="password" name="newpassword" id="newpass" value="" style="color: #00073A" required="true"> <br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
       </div>
 
       <!-- Page Foot -->

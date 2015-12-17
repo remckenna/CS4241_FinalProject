@@ -15,7 +15,12 @@ body
 a {
   text-decoration: none;
   margin: 0px 20px 0px 20px;
+  cursor: pointer;
 }
+
+a:hover {
+    background: yellow;
+  }
 
 .container {
   /* Flex */

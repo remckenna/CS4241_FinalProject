@@ -19,8 +19,8 @@ var headerInactiveTemplate = _.template (
     "</ul>" +
   "</div>" +
   "<div id='header-rightnav'>" +
-    "<a class='header-nav-btn' href='/addUser'> Sign Up</a>" +
-    "<a class='header-nav-btn' href='/logUser'> Log In</a>" +
+    "<a id='btn-signup' class='header-nav-btn' > Sign Up</a>" +
+    "<a id='btn-login'  class='header-nav-btn' > Log In</a>" +
   "</div>"
 );
 
