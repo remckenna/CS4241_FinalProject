@@ -19,17 +19,20 @@
     <script src="scripts/searchPageScript.js"></script>  </head>
 
   <body>
-    <div id="header">
-    </div>
-    <div id="pageBody">
-      <form method="GET" action=/searchTestingPage.html>
-        <label for="recipeTextBox">Recipe For: <input id="recipeTextBox" type="text" name="recipe"></label>
-        <label for="recipeSubmitButton"> <input id="recipeSubmitButton" type="submit"></label>
-      </form>
-      <div id="searchResultDiv" class="searchResults">
+    <div id="page-container">
+      <div id="page-header">
       </div>
-    </div>
-    <div id="footer">
+      <div id="page-body">
+        <a id='header-logo' href='/'><h1> Need To Food </h1> </a>
+        <form id='searchForm' method="GET" action=/searchTestingPage.html>
+          <label for="recipeTextBox">Recipe For: <input id="recipeTextBox" type="text" name="recipe"></label>
+          <label for="recipeSubmitButton"> <input id="recipeSubmitButton" type="submit"></label>
+        </form>
+        <div id="searchResultDiv" class="searchResults">
+        </div>
+      </div>
+      <div id="footer">
+      </div>
     </div>
   </body>
 </html>

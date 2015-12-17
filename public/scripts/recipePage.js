@@ -3,6 +3,7 @@ $(document).ready(function(){
   console.log("Getting recipe from " + url);
   $.get(url, onGetRecipeInformation);
   $("#btAddRecipeToUser").click(onAddRecipe);
+  $("#page-header").append(headerActiveTemplate());
 })
 
 function onGetRecipeInformation(data, status){

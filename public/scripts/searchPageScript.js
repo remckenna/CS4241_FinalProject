@@ -2,6 +2,7 @@ $(document).ready(function(){
   var url = "/search"+window.location.search;
   console.log("Search sent");
   $.get(url, onSearchFormResults);
+  $("#page-header").append(headerActiveTemplate());
 })
 
 function onSearchFormResults(data, status){

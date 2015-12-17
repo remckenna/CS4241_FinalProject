@@ -1,24 +1,14 @@
 var headerActiveTemplate = _.template (
-  "<a id='header-logo' href='/'> needToFood </a>" +
-  "<div id='header-leftnav'>" +
-    "<ul id='header-right' role='navigation'>" +
-      "<li class='header-nav-item'> <a href='/searchTestingPage.html'> Search</a> </li>" +
-    "</ul>" +
-  "</div>" +
   "<div id='header-rightnav'>" +
+    "<a class='header-nav-btn' href='/searchTestingPage.html'> Search</a>"+
     "<a class='header-nav-btn' href='/userpage.html'> Profile</a>" +
     "<a class='header-nav-btn' href='/logout'> Log Out</a>" +
   "</div>"
 );
 
 var headerInactiveTemplate = _.template (
-  "<a id='header-logo' href='/'> needToFood </a>" +
-  "<div id='header-leftnav'>" +
-    "<ul id='header-right' role='navigation'>" +
-      "<li class='header-nav-item'> <a href='/searchTestingPage.html'> Search</a> </li>" +
-    "</ul>" +
-  "</div>" +
   "<div id='header-rightnav'>" +
+    "<a class='header-nav-btn' href='/searchTestingPage.html'> Search</a>" +
     "<a id='btn-signup' class='header-nav-btn' > Sign Up</a>" +
     "<a id='btn-login'  class='header-nav-btn' > Log In</a>" +
   "</div>"
@@ -51,12 +41,14 @@ var recipeIngredientTemplate = _.template(
   "<div class='recipeIngredients'>"+
     "<h2 class='recipeTitle'><%=title%></h2>"+
     "<img src=https://spoonacular.com/recipeImages/<%=imageUrls[0]%>></img>"+
-    "<h3>Ingredients</h3>"+
-    "<ul>"+
-      "<% _.each(extendedIngredients, function(el, index, list){ %>"+
-         "<li class='recipeIngredientli'><b><%=el.amount%></b> <%= el.unit%> <%=el.name%></li>"+
-       "<% }); %>"+
-    "</ul>"+
-    "<p>Detailed instructions can be found at <a href='<%=sourceUrl%>'><%=sourceName%></a></p>"+
-  "</div>"
+    "<div class='ingredient-container'>"+
+      "<h3>Ingredients</h3>"+
+        "<ul>"+
+          "<% _.each(extendedIngredients, function(el, index, list){ %>"+
+             "<li class='recipeIngredientli'><b><%=el.amount%></b> <%= el.unit%> <%=el.name%></li>"+
+           "<% }); %>"+
+        "</ul>"+
+        "<p>Detailed instructions can be found at <a href='<%=sourceUrl%>'><%=sourceName%></a></p>"+
+      "</div>"+
+    "</div>"
 );
